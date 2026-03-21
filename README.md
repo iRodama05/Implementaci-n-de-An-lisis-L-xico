@@ -12,3 +12,9 @@ Primero, las expresiones regulares se utilizan porque proporcionan una notación
 Para la implementación del programa, se optó por un DFA. De acuerdo con Alfred V. Aho. (2006) en su obra Compilers: Principles, Techniques, and Tools, los autómatas finitos son los modelos estándar para construir estos analizadores por su alta eficiencia. Básicamente, permiten validar una palabra en tiempo lineal (complejidad O(n)); esto significa que la computadora solo necesita leer la palabra una vez, letra por letra, y el tiempo que tarda depende únicamente de qué tan larga sea la palabra, sin hacer cálculos extra.
 
 Se eligió diseñar un DFA en lugar de un Autómata Finito No Determinista (NFA). Como señala Sipser (2012) en Introduction to the Theory of Computation, aunque ambos sirven para reconocer el mismo tipo de lenguajes, el DFA tiene una gran ventaja al momento de programarlo: garantiza que, por cada letra que se lee, solo existe un camino posible a seguir. Esto significa que nuestro programa no tendrá que "adivinar" opciones, evaluar múltiples caminos al mismo tiempo, ni retroceder si se equivoca (una técnica de fuerza bruta conocida como backtracking). El resultado es un código mucho más directo, rápido y fácil de construir.
+
+
+### Referencias
+Aho, A. V., Lam, M. S., Sethi, R., & Ullman, J. D. (2006). Compilers: Principles, Techniques, and Tools (2nd ed.). Pearson Education.
+
+Sipser, M. (2012). Introduction to the Theory of Computation (3rd ed.). Cengage Learning.
