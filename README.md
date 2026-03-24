@@ -18,8 +18,10 @@ El primer autómata (NFA 1) se utiliza para representar las palabras del lenguaj
 ![94f7d7d6-442b-4e69-a1a7-722b90b8ab6a](https://github.com/user-attachments/assets/ec1d6b4c-3435-4bf4-b05a-63889a1f3516)
 
 El segundo autómata (NFA 2) se utiliza para representar la palabra que se bifurca directamente hacia la terminación "irë" (Coirë).
+![Notes_260323_221527_2](https://github.com/user-attachments/assets/f634e3dd-a7ef-4553-80c8-2027f2c5fe7e)
 
 El tercer autómata (NFA 3) se utiliza para representar las palabras que comparten el prefijo "Cor" (Coranar y Cormallen).
+![Notes_260323_221527_3](https://github.com/user-attachments/assets/c0297526-c89c-450a-8bef-8cb2e3d68680)
 
 Decidí utilizar tres Autómatas Finitos No Deterministas (NFA) diferentes inicialmente porque resulta más sencillo modelar el vocabulario dividiéndolo en subgrupos lógicos. Sin embargo, al tener NFA, tuve que transformarlos y unificarlos en un solo Autómata Finito Determinista (DFA) para poder programar este último de manera eficiente y evitar la ambigüedad en las transiciones, en lugar de intentar adivinar la estructura final. Para hacer esto, seguí el algoritmo de construcción de subconjuntos (subset construction) propuesto originalmente por Rabin y Scott, tal como se detalla en Aho et al. (2006).
 
