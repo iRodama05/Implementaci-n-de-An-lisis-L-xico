@@ -27,14 +27,59 @@ El autómata resultante (DFA) fue el siguiente:
 
 Los autómatas presentados son equivalentes a las siguientes expresiones regulares (RE):
 
-NFA 1 -> RE 1: C(erthas|irth)
+NFA 1 -> RE 1: `C(erthas|irth)`
 
-NFA 2 -> RE 2: Coirë
+NFA 2 -> RE 2: `Coirë`
 
-NFA 3 -> RE 3: Cor(anar|mallen)
+NFA 3 -> RE 3: `Cor(anar|mallen)`
 
-DFA Final -> RE Final: C(erthas|irth|o(irë|r(anar|mallen)))
+DFA Final -> RE Final: `C(erthas|irth|o(irë|r(anar|mallen)))`
 
+## Implementación
+Para la implementación de este análisis léxico, decidí utilizar la expresión regular optimizada (factorizada por la izquierda) derivada de mis modelos, la cual se encuentra en el archivo `regex.py`.
+
+Para utilizar el programa, el usuario debe ingresar una cadena de texto (por ejemplo, "Certhas"). El script evalúa la cadena completa y retorna `yes` si la palabra pertenece al lenguaje élfico definido, o `no` si es rechazada.
+
+### Ejemplos de entradas y salidas esperadas:
+
+`Certhas` -> yes
+
+`Cirth` -> yes
+
+`Coirë` -> yes
+
+`Coranar` -> yes
+
+`Cormallen` -> yes
+
+`Certh` -> no (Rechazo por prefijo incompleto)
+
+`Cirthas` -> no (Rechazo por sufijo inválido)
+
+`coirë` -> no (Rechazo por case-sensitivity, no inicia con mayúscula)
+
+`Cor` -> no (Rechazo por estado de no aceptación)
+
+`Elrond` -> no (Rechazo por símbolo no perteneciente al alfabeto de inicio)
+
+## Pruebas
+El archivo `tests.py` contiene el script de pruebas unitarias (Unit Tests). En este script se automatiza la validación de la expresión regular contra una lista exhaustiva de casos de prueba positivos (todas las combinaciones válidas) y casos de prueba negativos (errores tipográficos, prefijos sueltos y cadenas vacías) para asegurar que el reconocedor no genere falsos positivos.
+
+## Análisis
+La complejidad temporal asintótica de mi solución es `O(n)`, donde `n` es la longitud de la cadena de texto a procesar.
+
+### Demostración de complejidad:
+El comportamiento de un Autómata Finito Determinista (DFA), en el cual se basa nuestra expresión regular estricta, evalúa un solo carácter a la vez sin necesidad de retroceder. En un análisis a mano, el seudocódigo de la transición de estados es:
+```
+estado_actual = q0
+para cada caracter 'c' en la cadena de longitud n:
+    estado_actual = matriz_transicion[estado_actual][c]
+    si estado_actual es ERROR:
+        romper ciclo y rechazar
+si estado_actual es de ACEPTACION:
+    aceptar
+```
+Como la búsqueda en la matriz de transición para cada carácter toma un tiempo constante `O(1)`, y el ciclo se repite `n` veces, el tiempo total en el peor de los casos está acotado por `O(n)`.
 
 ### Referencias
 Aho, A. V., Lam, M. S., Sethi, R., & Ullman, J. D. (2006). Compilers: Principles, Techniques, and Tools (2nd ed.). Pearson Education.
