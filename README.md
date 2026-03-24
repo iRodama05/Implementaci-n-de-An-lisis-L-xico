@@ -93,3 +93,5 @@ La alternativa directa habría sido programar el autómata (DFA) manualmente, ut
 Aho, A. V., Lam, M. S., Sethi, R., & Ullman, J. D. (2006). Compilers: Principles, Techniques, and Tools (2nd ed.). Pearson Education.
 
 Sipser, M. (2012). Introduction to the Theory of Computation (3rd ed.). Cengage Learning.
+
+re — Regular expression operations. (n.d.). Python Documentation. https://docs.python.org/es/3.13/library/re.html
