@@ -26,6 +26,7 @@ El tercer autómata (NFA 3) se utiliza para representar las palabras que compart
 Decidí utilizar tres Autómatas Finitos No Deterministas (NFA) diferentes inicialmente porque resulta más sencillo modelar el vocabulario dividiéndolo en subgrupos lógicos. Sin embargo, al tener NFA, tuve que transformarlos y unificarlos en un solo Autómata Finito Determinista (DFA) para poder programar este último de manera eficiente y evitar la ambigüedad en las transiciones, en lugar de intentar adivinar la estructura final. Para hacer esto, seguí el algoritmo de construcción de subconjuntos (subset construction) propuesto originalmente por Rabin y Scott, tal como se detalla en Aho et al. (2006).
 
 El autómata resultante (DFA) fue el siguiente:
+![Automata](https://github.com/user-attachments/assets/2f26f800-cf53-4c30-b7f6-cc01dac26b69)
 
 Los autómatas presentados son equivalentes a las siguientes expresiones regulares (RE):
 
