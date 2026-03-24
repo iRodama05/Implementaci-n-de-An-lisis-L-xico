@@ -81,6 +81,11 @@ si estado_actual es de ACEPTACION:
 ```
 Como la búsqueda en la matriz de transición para cada carácter toma un tiempo constante `O(1)`, y el ciclo se repite `n` veces, el tiempo total en el peor de los casos está acotado por `O(n)`.
 
+Para la implementación en Python, utilicé la librería re. Aunque la literatura advierte que las expresiones regulares pueden volverse muy lentas (llegando a una complejidad de `O(2^n))` si el programa tiene que retroceder constantemente para adivinar caminos (backtracking), este caso es diferente. Al haber factorizado la expresión como `^C(erthas|irth|o(irë|r(anar|mallen)))$` y usar los anclajes de inicio (^) y fin ($), eliminamos cualquier ambigüedad. Esto significa que Python lee la palabra de forma directa sin tener que retroceder nunca, manteniendo un tiempo de ejecución eficiente y lineal de `O(n)`.
+
+### Comparación con soluciones alternativas:
+La alternativa directa habría sido programar el autómata (DFA) manualmente, utilizando múltiples condicionales (`if-else` o `switch-case`) para representar cada uno de los 26 estados. Aunque esa programación manual también es válida y garantiza un tiempo de ejecución de `O(n)`, el enfoque con Expresiones Regulares es superior porque es mucho más fácil de leer y mantener. Al usar una RE concisa, se logra resolver el problema en una sola línea de código, delegando la construcción interna del autómata al motor de Python y manteniendo el mismo rendimiento óptimo de `O(n)`.
+
 ### Referencias
 Aho, A. V., Lam, M. S., Sethi, R., & Ullman, J. D. (2006). Compilers: Principles, Techniques, and Tools (2nd ed.). Pearson Education.
 
