@@ -74,7 +74,28 @@ Como herramienta comparativa, se implementó la solución utilizando la expresi�
 `Elrond` -> no (Rechazo por símbolo no perteneciente al alfabeto de inicio)
 
 ## Pruebas
-El archivo `tests.py` contiene el script de pruebas unitarias (Unit Tests). En este script se automatiza la validación de la expresión regular contra una lista exhaustiva de casos de prueba positivos (todas las combinaciones válidas) y casos de prueba negativos (errores tipográficos, prefijos sueltos y cadenas vacías) para asegurar que el reconocedor no genere falsos positivos.
+El proyecto incluye scripts de pruebas unitarias tanto para Prolog como para Python (`tests.py`). Se automatizó la validación contra una lista exhaustiva de casos positivos (todas las combinaciones válidas) y casos negativos (errores tipográficos, prefijos sueltos y cadenas vacías).
+
+```
+--- PRUEBAS DE CASOS POSITIVOS ---
+Certhas -> yes
+Cirth -> yes
+Coirë -> yes
+Coranar -> yes
+Cormallen -> yes
+
+--- PRUEBAS DE CASOS NEGATIVOS ---
+Certh -> no
+Cirthas -> no
+coirë -> no
+Cor -> no
+Elrond -> no
+CormallenX -> no
+ -> no
+true.
+```
+
+Interpretación del Reporte: Como se muestra arriba (que es una copia exacta del resultado lanzado por prolog), la implementación pasa correctamente el 100% de los casos de prueba generados. Las pruebas demuestran que el modelo se detiene exactamente donde la regla falla, validando que la estructura de árbol Trie protege al sistema de falsos positivos al no permitir la combinación cruzada de sufijos (e.g., rechaza tajantemente combinaciones como "Cirthas").
 
 ## Análisis de Complejidad y Comparativa
 La complejidad temporal asintótica de mi solución es `O(n)`, donde `n` es la longitud de la cadena de texto a procesar.
@@ -83,6 +104,12 @@ La complejidad temporal asintótica de mi solución es `O(n)`, donde `n` es la l
 - **Complejidad Temporal:** $O(n)$, donde $n$ es la longitud de la cadena procesada. Al ser un DFA puramente determinista, el algoritmo consume exactamente un carácter por iteración recursiva. No existe backtracking sintáctico.
 - **Complejidad Espacial:** $O(n)$. Debido al diseño declarativo y a la evaluación recursiva de la lista de caracteres, la pila de llamadas (Call Stack) de Prolog crece de manera proporcional a la longitud de la palabra.
 
+5.2. Comparativa: DFA en Prolog vs. Regex en PythonRendimiento Temporal:
+- **Rendimiento Temporal:** Ambas soluciones son igual de rápidas y operan en un tiempo óptimo de $O(n)$. Prolog logra esto porque, al ser determinista, avanza estrictamente un carácter a la vez sin dudar.
+
+- **Rendimiento Espacial:** En este aspecto, Python tiene la ventaja ($O(1)$ frente al $O(n)$ de Prolog). Prolog utiliza recursividad, lo que significa que el programa guarda en la memoria cada paso que da hasta terminar de leer la palabra. Python, internamente, procesa la cadena usando un ciclo simple, por lo que consume una cantidad de memoria mínima y constante sin importar qué tan larga sea la palabra ingresada.
+
+- **Mantenibilidad y Propósito:** Prolog nos permite ver el "esqueleto" del autómata funcionando paso a paso con total transparencia, lo que lo hace perfecto para demostrar lógicamente que nuestro diseño no tiene errores. Sin embargo, si en un escenario real necesitáramos agregar cientos de palabras al diccionario, escribir cada estado a mano dejaría de ser práctico. Ahí es donde la Expresión Regular en Python demuestra su valor: condensa todo ese comportamiento lógico exacto en una sola línea de código, siendo la evolución natural para llevar el modelo teórico a un entorno de producción.
 
 ### Referencias
 Aho, A. V., Lam, M. S., Sethi, R., & Ullman, J. D. (2006). Compilers: Principles, Techniques, and Tools (2nd ed.). Pearson Education.
