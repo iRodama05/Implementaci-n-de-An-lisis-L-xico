@@ -15,13 +15,13 @@ Como señala Sipser (2012) en Introduction to the Theory of Computation, el DFA 
 Para construir la solución, diseñé primero tres Autómatas Finitos Deterministas (DFA) parciales para agrupar lógicamente el vocabulario. Me aseguré de que estos modelos iniciales fueran estrictamente deterministas, sin transiciones vacías y con un solo camino definido por cada símbolo.
 
 El primer autómata parcial (DFA 1) se utiliza para representar las palabras del lenguaje que comparten la raíz "C" seguida de las vocales "e" o "i" (Certhas y Cirth).
-![94f7d7d6-442b-4e69-a1a7-722b90b8ab6a](https://github.com/user-attachments/assets/ec1d6b4c-3435-4bf4-b05a-63889a1f3516)
+<img width="1000" height="707" alt="dfa1" src="https://github.com/user-attachments/assets/e1fe631c-7b99-452a-ba6f-815788d96485" />
 
 El segundo autómata parcial (DFA 2) se utiliza para representar la palabra que se bifurca directamente hacia la terminación "irë" (Coirë).
-![Notes_260323_221527_2](https://github.com/user-attachments/assets/f634e3dd-a7ef-4553-80c8-2027f2c5fe7e)
+<img width="2477" height="1752" alt="DFA2" src="https://github.com/user-attachments/assets/f6ab921b-7d7d-4890-96e2-6383a1ff0f02" />
 
 El tercer autómata parcial (DFA 3) se utiliza para representar las palabras que comparten el prefijo "Cor" (Coranar y Cormallen).
-![Notes_260323_221527_3](https://github.com/user-attachments/assets/c0297526-c89c-450a-8bef-8cb2e3d68680)
+<img width="2477" height="1752" alt="568110380-c0297526-c89c-450a-8bef-8cb2e3d68680" src="https://github.com/user-attachments/assets/08aada61-f7f1-41d7-bea9-50e94a16bd99" />
 
 Posteriormente, se unificaron estos diagramas en un DFA final. Para optimizar este DFA, se aplicó factorización por la izquierda en el diseño, lo que agrupa los prefijos comunes (como la letra 'C' o el segmento 'Cor') para evitar bifurcaciones redundantes. Además, como optimización espacial adicional, todos los caminos convergen en un único estado de aceptación unificado, reduciendo la cantidad total de estados en memoria.
 
